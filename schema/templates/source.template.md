@@ -11,13 +11,18 @@ author:
 published:
 captured:
 url:
+file:
 related: []
 promoted_to: []
 ---
 
 # {{title}}
 
-## Summary
+## Source
+
+![[../raw/{{filename}}]]
+
+## What's in this source
 
 ## My take
 
@@ -30,7 +35,3 @@ _None yet._
 ## Related pages
 
 ## Source notes
-
-<!-- The Original content section is immutable after ingest.
-     Do not edit, summarize, or trim it. -->
-## Original content

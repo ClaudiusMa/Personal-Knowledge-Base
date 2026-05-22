@@ -62,7 +62,8 @@ The `.gitignore` uses a whitelist approach: ignore everything by default, then e
 └── schema/
     ├── gitignore.template
     ├── obsidian/
-    │   └── app.json
+    │   ├── app.json
+    │   └── graph.json
     └── templates/
         ├── index.template.md
         ├── log.template.md
@@ -80,7 +81,7 @@ wiki/
 └── main/
     ├── index.md
     ├── log.md
-    ├── raw/          # optional staging for new clips before ingest, usually empty
+    ├── raw/          # original source files (the source of truth)
     ├── sources/
     ├── entities/
     ├── concepts/
@@ -92,7 +93,7 @@ The repo root is also the Obsidian vault root. Obsidian sees the private wiki, b
 
 ## Page Types
 
-- `source`: one ingested source. Includes an `## Original content` section that holds the raw source text verbatim and is treated as immutable after ingest — never edited, summarized, or trimmed.
+- `source`: an annotation layer for one ingested source. References the original file in `wiki/main/raw/` via the `file:` frontmatter and a `## Source` embed. Contains a factual `## What's in this source` index, the user's `## My take` (dated, updatable), and `## Sparks`. The original file is the source of truth; the source page never duplicates its content.
 - `entity`: a concrete recurring thing
 - `concept`: a neutral idea, term, pattern, or framework
 - `position`: a personal claim or sustained view
@@ -127,6 +128,8 @@ The initializer seeds `.obsidian/app.json` with a `userIgnoreFilters` list so th
 - `bin/`
 
 To edit this list inside Obsidian, go to **Settings → Files and links → Excluded files**. `.obsidian/` is gitignored, so per-vault edits stay local and are never pushed to GitHub. If `.obsidian/app.json` already exists in a vault, the initializer leaves it untouched.
+
+The initializer also seeds a `.obsidian/graph.json` with a default search filter that hides files in `wiki/main/raw/` from graph view. This prevents duplicate nodes appearing in the graph (one for the original file, one for the source page that annotates it). Raw files remain fully searchable, openable, and embeddable — they are only hidden from the visual graph.
 
 ## Using This With an LLM Agent
 

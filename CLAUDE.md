@@ -16,12 +16,13 @@ The private wiki content lives under `wiki/` and is gitignored. Treat every sour
   - Structure: tracked.
   - Knowledge: gitignored.
 - Never ingest private content into tracked files.
-- The `## Original content` section of a source page is immutable after creation. Never edit, summarize, trim, or reformat it. Treat it as the source of truth for the page.
-- `wiki/main/raw/` is an optional staging directory for new clips before ingest. It is normally empty. The verbatim source text is stored inside the source page's `## Original content` section, not as a separate file.
+- `wiki/main/raw/` holds the original source files. These are the source of truth for every ingested source. The LLM reads them but never modifies or deletes them.
+- Source pages are annotation layers, not content copies. They reference the original file via the `file:` frontmatter field and a `## Source` embed. They never duplicate the file's content.
+- Do not produce LLM-generated prose summaries on source pages. The `## What's in this source` section is a factual index only — bullet points naming sections, entities, scope, format. The user's interpretation belongs in `## My take`, dated and updatable.
 
 ## Page Types
 
-- `source`: one ingested source, with extractive summary, optional dated takes, and optional sparks.
+- `source`: an annotation layer for one ingested source. References the original file in `wiki/main/raw/` via the `file:` frontmatter and a `## Source` embed. Contains a factual `## What's in this source` index, optional dated takes, and optional sparks.
 - `entity`: a concrete recurring thing: person, organization, product, place, tool, book, project, etc.
 - `concept`: a descriptive idea, theme, pattern, term, or framework.
 - `position`: an opinionated personal claim or sustained view. Positions link to supporting, conflicting, and related pages.
@@ -69,7 +70,11 @@ When ingesting a source:
    - softer tensions
    - evidence that complicates an earlier view
 6. Before writing, surface any contradictions or tensions to the user.
-7. Create or update the source page. Append the verbatim raw source text as the `## Original content` section of the source page. Then delete the original file from `wiki/main/raw/` (or move it outside the vault if the user wants to archive originals on disk).
+7. Keep the original file in `wiki/main/raw/`. Create the source page as an annotation layer:
+   - Set the `file:` frontmatter to the path of the original.
+   - Add a `## Source` section with `![[../raw/<filename>]]` so the original is embedded/linked from the source page.
+   - Populate `## What's in this source` with factual bullets only (sections covered, entities mentioned, scope, format).
+   - Do not embed the file's content. Do not delete the file.
 8. Prompt for `My take` when useful. The user may skip.
 9. Prompt for `Sparks` when useful. The user may skip.
 10. Update relevant entity, concept, position, and question pages.
@@ -82,13 +87,15 @@ When ingesting a source:
 A source page must contain these headings:
 
 ```md
-## Summary
+## Source
+## What's in this source
 ## My take
 ## Sparks
-## Original content
 ```
 
-`Summary` is extractive and source-grounded.
+(`## Related pages` and `## Source notes` may also appear but are not required.)
+
+`What's in this source` is a factual index of the source, not a synthesis. Bullet points naming sections, entities, scope, and format. No prose interpretation — that belongs in `## My take`.
 
 `My take` is the user's reaction, dated by month when present:
 

@@ -81,6 +81,12 @@ async function initializeVault(destination) {
   await copyFileIfMissing("schema/templates/log.template.md", path.join(wikiRoot, "log.md"), created, skipped);
 
   await copyFileIfMissing("schema/obsidian/app.json", path.join(destination, ".obsidian", "app.json"), created, skipped);
+  await copyFileIfMissing(
+    "schema/obsidian/graph.json",
+    path.join(destination, ".obsidian", "graph.json"),
+    created,
+    skipped,
+  );
 
   const gitDir = path.join(destination, ".git");
   if (!(await exists(gitDir))) {
