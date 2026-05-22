@@ -18,12 +18,6 @@ promoted_to: []
 
 # {{title}}
 
-## Source
-
-![[../raw/{{filename}}]]
-
-## What's in this source
-
 ## My take
 
 _None yet._
@@ -31,6 +25,12 @@ _None yet._
 ## Sparks
 
 _None yet._
+
+## What's in this source
+
+## Source
+
+![[../raw/{{filename}}]]
 
 ## Related pages
 

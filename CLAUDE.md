@@ -19,6 +19,9 @@ The private wiki content lives under `wiki/` and is gitignored. Treat every sour
 - `wiki/main/raw/` holds the original source files. These are the source of truth for every ingested source. The LLM reads them but never modifies or deletes them.
 - Source pages are annotation layers, not content copies. They reference the original file via the `file:` frontmatter field and a `## Source` embed. They never duplicate the file's content.
 - Do not produce LLM-generated prose summaries on source pages. The `## What's in this source` section is a factual index only — bullet points naming sections, entities, scope, format. The user's interpretation belongs in `## My take`, dated and updatable.
+- Never change the meaning of a user's `My take` or `Sparks` content. These sections are the user's voice. Allowed: silently auto-fix obvious typos and misspellings. Not allowed without explicit user approval: grammar changes, rephrasing, restructuring sentences, expanding, condensing, adding caveats, softening claims, inserting new ideas, or changing word choice.
+- For any edit to a take or spark beyond a clear typo (e.g., grammar, punctuation that affects meaning, word choice), show the proposed diff and wait for explicit approval before writing.
+- If a take or spark seems incomplete or unclear, surface a question to the user. Do not fill in the gap by editing.
 
 ## Page Types
 
@@ -57,6 +60,10 @@ Other operation types may use:
 ## [YYYY-MM-DD] lint | Scope
 ```
 
+## Session Start
+
+When the user opens a session and gives any input — including a single word, a file mention, or just "go" — first list `wiki/main/raw/`. For any file there that is not referenced by any existing source page's `file:` frontmatter, treat it as a pending ingest. Surface the list to the user and ask which they want to process. If only one is pending, begin the ingest workflow immediately and confirm what you're doing.
+
 ## Ingest Workflow
 
 When ingesting a source:
@@ -87,10 +94,10 @@ When ingesting a source:
 A source page must contain these headings:
 
 ```md
-## Source
-## What's in this source
 ## My take
 ## Sparks
+## What's in this source
+## Source
 ```
 
 (`## Related pages` and `## Source notes` may also appear but are not required.)
