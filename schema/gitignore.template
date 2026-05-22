@@ -7,6 +7,7 @@
 !/.gitignore
 !/README.md
 !/CLAUDE.md
+!/LICENSE
 !/package.json
 
 # Public command-line initializer.

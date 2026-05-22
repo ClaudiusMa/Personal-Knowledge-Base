@@ -54,6 +54,7 @@ The `.gitignore` uses a whitelist approach: ignore everything by default, then e
 .
 ├── CLAUDE.md
 ├── README.md
+├── LICENSE
 ├── .gitignore
 ├── package.json
 ├── bin/
@@ -116,3 +117,7 @@ The LLM periodically checks for stale pages, missing links, contradictions, orph
 Point your LLM agent at the vault and tell it to follow `CLAUDE.md`. The schema is intentionally plain markdown. No Obsidian plugins, databases, vector search, or static-site tooling are required at the start.
 
 Start with one broad wiki. Add structure only when real friction appears.
+
+## License
+
+MIT
