@@ -1,0 +1,21 @@
+{
+  "name": "personal-knowledge-base",
+  "version": "0.1.0",
+  "description": "A reusable structure for a private LLM-maintained Obsidian knowledge base.",
+  "type": "module",
+  "bin": {
+    "personal-knowledge-base": "./bin/personal-knowledge-base.mjs"
+  },
+  "files": [
+    "CLAUDE.md",
+    "README.md",
+    "bin",
+    "schema"
+  ],
+  "scripts": {
+    "help": "node bin/personal-knowledge-base.mjs --help"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
