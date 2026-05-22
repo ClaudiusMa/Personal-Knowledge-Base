@@ -61,6 +61,8 @@ The `.gitignore` uses a whitelist approach: ignore everything by default, then e
 │   └── personal-knowledge-base.mjs
 └── schema/
     ├── gitignore.template
+    ├── obsidian/
+    │   └── app.json
     └── templates/
         ├── index.template.md
         ├── log.template.md
@@ -111,6 +113,20 @@ The LLM reads the private index first, then relevant pages, then answers from th
 ### Lint
 
 The LLM periodically checks for stale pages, missing links, contradictions, orphan pages, missing index entries, and takes or sparks that should be promoted.
+
+## Obsidian Defaults
+
+The initializer seeds `.obsidian/app.json` with a `userIgnoreFilters` list so that agent-facing structural files do not pollute the Obsidian UI. By default, these paths are excluded from graph view, quick switcher, search, and link autocomplete:
+
+- `CLAUDE.md`
+- `README.md`
+- `LICENSE`
+- `package.json`
+- `.gitignore`
+- `schema/`
+- `bin/`
+
+To edit this list inside Obsidian, go to **Settings → Files and links → Excluded files**. `.obsidian/` is gitignored, so per-vault edits stay local and are never pushed to GitHub. If `.obsidian/app.json` already exists in a vault, the initializer leaves it untouched.
 
 ## Using This With an LLM Agent
 

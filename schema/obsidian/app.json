@@ -1,0 +1,11 @@
+{
+  "userIgnoreFilters": [
+    "CLAUDE.md",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    ".gitignore",
+    "schema/",
+    "bin/"
+  ]
+}
