@@ -11,7 +11,6 @@ author:
 published:
 captured:
 url:
-raw:
 related: []
 promoted_to: []
 ---
@@ -31,3 +30,7 @@ _None yet._
 ## Related pages
 
 ## Source notes
+
+<!-- The Original content section is immutable after ingest.
+     Do not edit, summarize, or trim it. -->
+## Original content

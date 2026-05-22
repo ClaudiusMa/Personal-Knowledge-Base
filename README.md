@@ -8,19 +8,19 @@ This repository contains the public structure only. Your actual knowledge stays 
 
 ## Quick Start
 
-Create a new vault from this repo:
+Create or `cd` into the folder you want to use as your vault, then run:
 
 ```sh
-npx github:ClaudiusMa/personal-knowledge-base init ~/Personal-Knowledge-Base
+npx github:ClaudiusMa/personal-knowledge-base init
 ```
 
-Then open the generated folder as an Obsidian vault.
-
-You can also initialize the current directory:
+This initializes the current directory. To initialize a different path instead, pass it as an argument:
 
 ```sh
-npx github:ClaudiusMa/personal-knowledge-base init .
+npx github:ClaudiusMa/personal-knowledge-base init ~/somewhere-else
 ```
+
+Then open the vault folder in Obsidian.
 
 ## Privacy Model
 
@@ -80,7 +80,7 @@ wiki/
 └── main/
     ├── index.md
     ├── log.md
-    ├── raw/
+    ├── raw/          # optional staging for new clips before ingest, usually empty
     ├── sources/
     ├── entities/
     ├── concepts/
@@ -92,7 +92,7 @@ The repo root is also the Obsidian vault root. Obsidian sees the private wiki, b
 
 ## Page Types
 
-- `source`: one ingested source
+- `source`: one ingested source. Includes an `## Original content` section that holds the raw source text verbatim and is treated as immutable after ingest — never edited, summarized, or trimmed.
 - `entity`: a concrete recurring thing
 - `concept`: a neutral idea, term, pattern, or framework
 - `position`: a personal claim or sustained view

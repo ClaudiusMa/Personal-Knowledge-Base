@@ -16,6 +16,8 @@ The private wiki content lives under `wiki/` and is gitignored. Treat every sour
   - Structure: tracked.
   - Knowledge: gitignored.
 - Never ingest private content into tracked files.
+- The `## Original content` section of a source page is immutable after creation. Never edit, summarize, trim, or reformat it. Treat it as the source of truth for the page.
+- `wiki/main/raw/` is an optional staging directory for new clips before ingest. It is normally empty. The verbatim source text is stored inside the source page's `## Original content` section, not as a separate file.
 
 ## Page Types
 
@@ -67,7 +69,7 @@ When ingesting a source:
    - softer tensions
    - evidence that complicates an earlier view
 6. Before writing, surface any contradictions or tensions to the user.
-7. Create or update the source page.
+7. Create or update the source page. Append the verbatim raw source text as the `## Original content` section of the source page. Then delete the original file from `wiki/main/raw/` (or move it outside the vault if the user wants to archive originals on disk).
 8. Prompt for `My take` when useful. The user may skip.
 9. Prompt for `Sparks` when useful. The user may skip.
 10. Update relevant entity, concept, position, and question pages.
@@ -83,6 +85,7 @@ A source page must contain these headings:
 ## Summary
 ## My take
 ## Sparks
+## Original content
 ```
 
 `Summary` is extractive and source-grounded.
